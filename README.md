@@ -17,7 +17,7 @@ Key Features:
 - Rich text editor for chapter description
 - Authentication using Clerk
 - ORM using Prisma
-- MySQL database using Planetscale
+- MySQL database using Planet Scale
 
 ### Prerequisites
 
