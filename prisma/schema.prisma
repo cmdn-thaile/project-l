@@ -9,6 +9,11 @@ generator client {
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+
 model Course {
   id String @id @default(uuid())
   userId String
