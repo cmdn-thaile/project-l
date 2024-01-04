@@ -38,23 +38,30 @@ export const ChaptersList = ({
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
 
+    // get the items array
     const items = Array.from(chapters);
+    // get the item that was dragged from the array
     const [reorderedItem] = items.splice(result.source.index, 1);
+    // insert the item into the array at the destination index
     items.splice(result.destination.index, 0, reorderedItem);
 
+    // get the start and end index of the dragged item based on the source and destination
     const startIndex = Math.min(result.source.index, result.destination.index);
     const endIndex = Math.max(result.source.index, result.destination.index);
 
+    // get the items that were reordered
     const updatedChapters = items.slice(startIndex, endIndex + 1);
 
+    // update the state
     setChapters(items);
 
-    const bulkUpdateData = updatedChapters.map((chapter) => ({
+    // update the position data
+    const updatedPositionData = updatedChapters.map((chapter) => ({
       id: chapter.id,
       position: items.findIndex((item) => item.id === chapter.id)
     }));
 
-    onReorder(bulkUpdateData);
+    onReorder(updatedPositionData);
   }
 
   if (!isMounted) {
